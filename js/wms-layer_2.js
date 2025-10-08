@@ -61,9 +61,9 @@ addGeoJSON(
     bindMunicipalLabel // <- Enlaza el Tooltip municipal
 );
 
-// 2. Núcleos Agrarios (ram.geojson): Usando la nueva etiqueta de Popup
+// 2. Núcleos Agrarios (ran.geojson): Usando la nueva etiqueta de Popup
 addGeoJSON(
-    'data/ram.geojson', 
+    'data/ran.geojson', 
     'Núcleos Agrarios', 
     { color: '#00FF00', weight: 1, fillOpacity: 0.3 },
     bindNucleoAgrarioLabel // <- Enlaza el Popup del núcleo agrario
