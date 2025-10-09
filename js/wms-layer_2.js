@@ -56,7 +56,7 @@ addGeoJSON(
     'data/dgo.geojson', 
     'Límite Municipal', 
     { 
-        color: '#FFFFFF',     // línea blanca
+        color: '#333333',     // línea blanca
         weight: 2,            // grosor del borde
         fillColor: '#FFFFFF', // relleno blanco
         fillOpacity: 0     // transparencia del 35%

@@ -1,21 +1,32 @@
-// Inicializa el mapa centrado en unas coordenadas específicas y con un zoom de nivel 7
-var map = L.map('map').setView([24.61429, -104.51686], 7);
-
-// Define la capa base de Google Satellite
+// 1️⃣ Definir capas base primero
 var googleTileLayer = L.tileLayer('http://mt0.google.com/vt/lyrs=y&hl=en&x={x}&y={y}&z={z}', {
-    attribution: 'Google Satellite',
-}).addTo(map); // Agrega la capa al mapa por defecto
-
-// Define la capa base de OpenStreetMap
-var osmTileLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '© OpenStreetMap',
+    attribution: 'Google Satellite'
 });
 
-// Agrupa las capas base en un objeto para mostrarlas en un control
+var osmTileLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap'
+});
+
+// 2️⃣ Crear el mapa con la capa por defecto (OSM en este caso)
+var map = L.map('map', {
+    center: [24.61429, -104.51686],
+    zoom: 7,
+    layers: [osmTileLayer] // Capa que aparece al cargar
+});
+
+var stamenToner = L.tileLayer('https://stamen-tiles.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}.png', {
+    attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>',
+    maxZoom: 20
+});
+
+// 3️⃣ Agrupar capas base en un control
 var baseMaps = {
     "Google Satellite": googleTileLayer,
-    "OpenStreetMap": osmTileLayer,
+    "OpenStreetMap": osmTileLayer
 };
+
+
+
 
 // Evento que escucha el formulario para ingresar coordenadas manualmente
 document.getElementById('coord-form').addEventListener('submit', function (e) {
