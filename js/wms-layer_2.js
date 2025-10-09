@@ -1,46 +1,46 @@
 var overlayMaps = {};
 var layerControl = L.control.layers(baseMaps, overlayMaps).addTo(map);
 
-// 1. FUNCIÓN DE ENLACE PARA LÍMITES MUNICIPALES
+// 1️⃣ FUNCIÓN DE ENLACE PARA LÍMITES MUNICIPALES (corregida)
 function bindMunicipalLabel(feature, layer) {
-    const nombreMunicipio = feature.properties.NOMGEO; // Usamos NOMGEO
-    if (nombreMunicipio) {
-        const labelContent = "<b>Municipio:</b> " + nombreMunicipio;
-        layer.bindTooltip(labelContent, { permanent: false, direction: 'center' });
+    const properties = feature.properties;
+
+    if (properties.NOMGEO) {
+        const labelContent = `
+            <div class="popup-municipio">
+                <b>Municipio:</b> ${properties.NOMGEO || 'N/A'}<br>
+                <b>Clave INEGI:</b> ${properties.CVE_MUN || 'N/A'}<br>
+                <b>Entidad Federativa:</b> ${properties.NOM_ENT || 'N/A'}
+            </div>
+        `;
+        // 🔹 Se había repetido el "layer.bindPopup"; se deja solo una línea correcta
+        layer.bindPopup(labelContent, { className: 'popup-municipio' });
     }
 }
 
-// 2. FUNCIÓN DE ENLACE PARA NÚCLEOS AGRARIOS
+// 2️⃣ FUNCIÓN DE ENLACE PARA NÚCLEOS AGRARIOS
 function bindNucleoAgrarioLabel(feature, layer) {
-    // Definimos las propiedades para facilitar su uso
     const properties = feature.properties;
-    
-    // Verificamos que al menos la propiedad principal exista para crear el popup
+
     if (properties.NOM_NUC) {
-        
-        // Creamos el contenido del popup, usando <br> para saltos de línea y formato HTML
         const labelContent = `
             <b>Núcleo Agrario:</b> ${properties.NOM_NUC || 'N/A'}<br>
             <b>Tipo:</b> ${properties.tipo || 'N/A'}<br>
-            <b>No. Municipio:</b> ${properties.NOM_MUN || 'N/A'}<br>
+            <b>Municipio:</b> ${properties.NOM_MUN || 'N/A'}<br>
             <b>Entidad Federativa:</b> ${properties.NOM_EST || 'N/A'}
         `;
-        
-        // Enlazar el popup al polígono (se abre al hacer clic)
-        layer.bindPopup(labelContent); 
+        layer.bindPopup(labelContent, { className: 'popup-nucleo' });
     }
 }
 
-
-// Función para agregar GeoJSON al mapa y al control (sin cambios)
+// Función genérica para agregar GeoJSON al mapa
 function addGeoJSON(url, name, style, featureBindingFunction) {
     fetch(url)
         .then(res => res.json())
         .then(data => {
-            var layer = L.geoJSON(data, { 
+            const layer = L.geoJSON(data, { 
                 style: style,
-                // Aplicamos la función de enlace proporcionada
-                onEachFeature: featureBindingFunction 
+                onEachFeature: featureBindingFunction
             }); 
             
             layer.addTo(map);
@@ -50,25 +50,22 @@ function addGeoJSON(url, name, style, featureBindingFunction) {
 }
 
 // -------------------------------------------------------------
-// USO DE LAS FUNCIONES: Ahora ambas capas tienen una función de enlace
+// USO DE LAS FUNCIONES
 // -------------------------------------------------------------
 
-// 1. Límites Municipales (dgo.geojson): Usando la etiqueta de Tooltip
 addGeoJSON(
     'data/dgo.geojson', 
     'Límite Municipal', 
     { color: '#FF0000', weight: 2, fillOpacity: 0.5 },
-    bindMunicipalLabel // <- Enlaza el Tooltip municipal
+    bindMunicipalLabel
 );
 
-// 2. Núcleos Agrarios (ran.geojson): Usando la nueva etiqueta de Popup
 addGeoJSON(
     'data/ran.geojson', 
     'Núcleos Agrarios', 
     { color: '#00FF00', weight: 1, fillOpacity: 0.3 },
-    bindNucleoAgrarioLabel // <- Enlaza el Popup del núcleo agrario
+    bindNucleoAgrarioLabel
 );
-
 
 
 

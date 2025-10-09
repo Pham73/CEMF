@@ -1,4 +1,3 @@
-
 html, body, #map {
     height: 100%;
     width: 100%;
@@ -7,27 +6,65 @@ html, body, #map {
     overflow: hidden;
 }
 
+/* === Cuadro de entrada de coordenadas === */
 .coord-input {
-    position: absolute;               /* Posiciona el elemento en relación a su contenedor más cercano con posición relativa (o al body si no tiene contenedor con esa propiedad) */
-    bottom: 10px;                     /* Coloca el elemento 10 píxeles desde el borde inferior de su contenedor */
-    left: 50%;                         /* Coloca el elemento al 50% del ancho del contenedor */
-    transform: translateX(-50%);       /* Ajusta el elemento para centrarlo horizontalmente, moviéndolo hacia la izquierda un 50% de su propio ancho */
-    z-index: 1000;                     /* Asegura que el elemento esté por encima de otros elementos con menor z-index */
-    background: rgba(255, 255, 255, 0); /* Fondo transparente (sin color de fondo visible) */
-    padding: 10px;                     /* Espaciado interno de 10 píxeles alrededor del contenido */
-    border-radius: 8px;                /* Bordes redondeados de 8 píxeles */
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3); /* Sombra sutil para dar profundidad (2 píxeles de desplazamiento en y, 6 píxeles de difuminado) */
-    display: flex;                     /* Usa flexbox para organizar los elementos dentro de este contenedor */
-    gap: 10px;                         /* Espacio de 10 píxeles entre los elementos hijos dentro de este contenedor */
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.35); /* 🔹 Blanco con 35% opacidad */
+    padding: 10px 14px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    backdrop-filter: blur(4px); /* 🔹 Suaviza el fondo detrás (efecto vidrio) */
 }
-
 
 .coord-input input {
     padding: 6px;
     width: 200px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
 }
 
 .coord-input button {
     padding: 6px 10px;
     cursor: pointer;
+    border: none;
+    background-color: #0078ff;
+    color: #fff;
+    border-radius: 4px;
+    transition: background 0.2s ease;
 }
+.coord-input button:hover {
+    background-color: #005fcc;
+}
+
+/* === Estilo personalizado para popups Leaflet === */
+.leaflet-popup-content-wrapper {
+    background: rgba(255, 255, 255, 0.65);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    color: #000;
+    backdrop-filter: blur(4px); /* 🔹 Suaviza el fondo dentro del popup */
+}
+
+/* Popup de municipios */
+.popup-municipio .leaflet-popup-content-wrapper,
+.leaflet-popup-content-wrapper.popup-municipio {
+    background: rgba(240, 255, 240, 0.80);
+    border: 2px solid #00aa00;
+    border-radius: 8px;
+}
+
+/* Popup de núcleos agrarios */
+.leaflet-popup-content-wrapper.popup-nucleo {
+    background: rgba(240, 255, 240, 0.80);
+    border: 2px solid #00aa00;
+    border-radius: 8px;
+}
+
