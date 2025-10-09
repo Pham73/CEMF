@@ -48,7 +48,7 @@ html, body, #map {
 .leaflet-popup-content-wrapper {
     background: rgba(255, 255, 255, 0.65);
     border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.80);
     color: #000;
     backdrop-filter: blur(4px); /* 🔹 Suaviza el fondo dentro del popup */
 }
@@ -57,14 +57,15 @@ html, body, #map {
 .popup-municipio .leaflet-popup-content-wrapper,
 .leaflet-popup-content-wrapper.popup-municipio {
     background: rgba(240, 255, 240, 0.80);
-    border: 2px solid #00aa00;
+    border: none;  
     border-radius: 8px;
 }
 
 /* Popup de núcleos agrarios */
 .leaflet-popup-content-wrapper.popup-nucleo {
     background: rgba(240, 255, 240, 0.80);
-    border: 2px solid #00aa00;
+    border: none;  
     border-radius: 8px;
 }
+
 

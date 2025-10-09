@@ -1,7 +1,8 @@
+// === CONTROL DE CAPAS ===
 var overlayMaps = {};
 var layerControl = L.control.layers(baseMaps, overlayMaps).addTo(map);
 
-// 1️⃣ FUNCIÓN DE ENLACE PARA LÍMITES MUNICIPALES (corregida)
+// === FUNCIÓN DE ENLACE PARA LÍMITES MUNICIPALES ===
 function bindMunicipalLabel(feature, layer) {
     const properties = feature.properties;
 
@@ -13,12 +14,11 @@ function bindMunicipalLabel(feature, layer) {
                 <b>Entidad Federativa:</b> ${properties.NOM_ENT || 'N/A'}
             </div>
         `;
-        // 🔹 Se había repetido el "layer.bindPopup"; se deja solo una línea correcta
         layer.bindPopup(labelContent, { className: 'popup-municipio' });
     }
 }
 
-// 2️⃣ FUNCIÓN DE ENLACE PARA NÚCLEOS AGRARIOS
+// === FUNCIÓN DE ENLACE PARA NÚCLEOS AGRARIOS ===
 function bindNucleoAgrarioLabel(feature, layer) {
     const properties = feature.properties;
 
@@ -29,43 +29,53 @@ function bindNucleoAgrarioLabel(feature, layer) {
             <b>Municipio:</b> ${properties.NOM_MUN || 'N/A'}<br>
             <b>Entidad Federativa:</b> ${properties.NOM_EST || 'N/A'}
         `;
-        layer.bindPopup(labelContent, { className: 'popup-nucleo' });
+        layer.bindPopup(labelContent);
     }
 }
 
-// Función genérica para agregar GeoJSON al mapa
+// === FUNCIÓN GENÉRICA PARA AGREGAR GEOJSON ===
 function addGeoJSON(url, name, style, featureBindingFunction) {
     fetch(url)
         .then(res => res.json())
         .then(data => {
-            const layer = L.geoJSON(data, { 
+            var layer = L.geoJSON(data, { 
                 style: style,
-                onEachFeature: featureBindingFunction
+                onEachFeature: featureBindingFunction 
             }); 
             
             layer.addTo(map);
-            layerControl.addOverlay(layer, name);
+            layerControl.addOverlay(layer, name); // ✅ Aquí se mantiene correctamente
         })
         .catch(err => console.error("Error cargando GeoJSON:", err));
 }
 
-// -------------------------------------------------------------
-// USO DE LAS FUNCIONES
-// -------------------------------------------------------------
+// === CAPAS ===
 
+// 1️⃣ Límite Municipal: línea blanca, fondo blanco transparente
 addGeoJSON(
     'data/dgo.geojson', 
     'Límite Municipal', 
-    { color: '#FF0000', weight: 2, fillOpacity: 0.5 },
+    { 
+        color: '#FFFFFF',     // línea blanca
+        weight: 2,            // grosor del borde
+        fillColor: '#FFFFFF', // relleno blanco
+        fillOpacity: 0     // transparencia del 35%
+    },
     bindMunicipalLabel
 );
 
+// 2️⃣ Núcleos Agrarios: verde translúcido
 addGeoJSON(
     'data/ran.geojson', 
     'Núcleos Agrarios', 
-    { color: '#00FF00', weight: 1, fillOpacity: 0.3 },
+    { 
+        color: '#00FF00', 
+        weight: 1, 
+        fillOpacity: 0.15 
+    },
     bindNucleoAgrarioLabel
 );
+
 
 
 
