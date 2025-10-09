@@ -8,7 +8,7 @@ var googleTileLayer = L.tileLayer('http://mt0.google.com/vt/lyrs=y&hl=en&x={x}&y
 
 // Define la capa base de OpenStreetMap
 var osmTileLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '© OpenStreetMap contributors',
+    attribution: '© OpenStreetMap',
 });
 
 // Agrupa las capas base en un objeto para mostrarlas en un control
