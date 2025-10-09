@@ -25,6 +25,24 @@ var baseMaps = {
     "OpenStreetMap": osmTileLayer
 };
 
+// Escala
+L.control.scale({ position: 'bottomleft', metric: true, imperial: false }).addTo(map);
+
+// Localización
+L.control.locate({ position: 'topleft', flyTo: true, showPopup: true }).addTo(map);
+
+// Medición de distancia y área
+var measureControl = new L.Control.Measure({
+    primaryLengthUnit: 'meters',  // unidad principal para distancia
+    secondaryLengthUnit: 'kilometers',
+    primaryAreaUnit: 'sqmeters',  // unidad principal para área
+    secondaryAreaUnit: 'hectares',
+    position: 'topleft',
+    activeColor: '#FF0000',      // color de líneas activas
+    completedColor: '#00FF00',   // color de líneas completadas
+    popupOptions: { className: 'leaflet-measure-resultpopup' }
+});
+measureControl.addTo(map);
 
 
 
