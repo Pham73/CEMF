@@ -49,7 +49,7 @@ var logoControl = L.control({ position: 'bottomright' }); // puedes usar: 'tople
 
 logoControl.onAdd = function(map) {
     var div = L.DomUtil.create('div', 'leaflet-control-logo');
-    div.innerHTML = '<img src="img/logo.png" style="width: 100px; opacity: 0.85;">';
+    div.innerHTML = '<img src="img/logo.png" style="width: 160px; opacity: 0.85;">';
     return div;
 };
 
