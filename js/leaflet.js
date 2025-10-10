@@ -44,6 +44,20 @@ var measureControl = new L.Control.Measure({
 });
 measureControl.addTo(map);
 
+// === LOGO PERSONALIZADO ===
+var logoControl = L.control({ position: 'bottomright' }); // puedes usar: 'topleft', 'topright', 'bottomleft', 'bottomright'
+
+logoControl.onAdd = function(map) {
+    var div = L.DomUtil.create('div', 'leaflet-control-logo');
+    div.innerHTML = '<img src="img/logo.png" style="width: 100px; opacity: 0.85;">';
+    return div;
+};
+
+logoControl.addTo(map);
+
+div.innerHTML = '<a href="https://tu-sitio.com" target="_blank"><img src="img/logo.png" style="width: 100px; opacity: 0.9;"></a>';
+
+
 
 
 // Evento que escucha el formulario para ingresar coordenadas manualmente
