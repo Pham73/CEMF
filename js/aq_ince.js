@@ -1,6 +1,4 @@
-// === CONTROL DE CAPAS ===
-var inceMaps = {}; // Aquí se almacenan las capas vectoriales (GeoJSON, etc.)
-var layerControl = L.control.layers(baseMaps, overlayMaps, inceMaps).addTo(map);
+
 
 // === FUNCIÓN DE ENLACE DE POPUP ===
 function bind_ince_Label(feature, layer) {
@@ -33,7 +31,7 @@ function addGeoJSON(url, name, style, featureBindingFunction, visible = true) {
             }
 
             // Agregar la capa al control de capas
-            inceMaps[name] = layer;
+            overlayMaps[name] = layer;
             layerControl.addOverlay(layer, name);
         })
         .catch(err => console.error("Error cargando GeoJSON:", err));
@@ -66,8 +64,8 @@ function bind_ince_Label(feature, layer) {
         const labelContent = `
             <b>Superficie Afectada (ha.):</b> ${superficie}<br>
             <b>Núcleo Agrario:</b> ${properties.NOM_NUC || 'N/A'}<br>
-            <b>Municipio:</b> ${properties.NOM_MUN || 'N/A'}<br>
-            <b>Entidad Federativa:</b> ${properties.NOM_EST || 'N/A'}
+            <b>Municipio:</b> ${properties.NOMGEO || 'N/A'}<br>
+            <b>Entidad Federativa:</b> ${properties.NOM_ENT || 'N/A'}
         `;
         layer.bindPopup(labelContent);
     }

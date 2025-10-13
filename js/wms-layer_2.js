@@ -1,6 +1,6 @@
 // === CONTROL DE CAPAS ===
-var overlayMaps = {};
-//var layerControl = L.control.layers(baseMaps, overlayMaps).addTo(map);
+var overlayMaps = {}; // Aquí se almacenan las capas vectoriales (GeoJSON, etc.)
+var layerControl = L.control.layers(baseMaps, overlayMaps).addTo(map);
 
 // === FUNCIÓN DE ENLACE PARA LÍMITES MUNICIPALES ===
 function bindMunicipalLabel(feature, layer) {
@@ -61,8 +61,7 @@ addGeoJSON(
         fillColor: '#FFFFFF', // relleno blanco
         fillOpacity: 0     // transparencia del 35%
     },
-    bindMunicipalLabel,
-	false
+    bindMunicipalLabel
 );
 
 // 2️⃣ Núcleos Agrarios: verde translúcido
@@ -74,8 +73,7 @@ addGeoJSON(
         weight: 1, 
         fillOpacity: 0.15 
     },
-    bindNucleoAgrarioLabel,
-	false
+    bindNucleoAgrarioLabel
 );
 
 

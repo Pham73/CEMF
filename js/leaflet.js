@@ -71,9 +71,28 @@ document.addEventListener('click', function(e) {
     }
 });
 
+// === Crear un control de coordenadas ===
+var coordControl = L.control({position: 'bottomleft'}); // posición en la esquina inferior izquierda
 
+coordControl.onAdd = function(map) {
+    this._div = L.DomUtil.create('div', 'coord-control'); // crea el div
+    this.update();
+    return this._div;
+};
 
+// Función para actualizar las coordenadas
+coordControl.update = function(latlng) {
+    this._div.innerHTML = latlng ? 
+        `Lat: ${latlng.lat.toFixed(5)}, Lon: ${latlng.lng.toFixed(5)}` : 
+        'Lat: --, Lon: --';
+};
 
+coordControl.addTo(map);
+
+// === Actualizar coordenadas al mover el cursor ===
+map.on('mousemove', function(e) {
+    coordControl.update(e.latlng);
+});
 
 // Evento que escucha el formulario para ingresar coordenadas manualmente
 document.getElementById('coord-form').addEventListener('submit', function (e) {
