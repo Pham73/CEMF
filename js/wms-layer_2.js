@@ -1,6 +1,6 @@
 // === CONTROL DE CAPAS ===
 var overlayMaps = {}; // Aquí se almacenan las capas vectoriales (GeoJSON, etc.)
-var layerControl = L.control.layers(baseMaps, overlayMaps).addTo(map);
+//var layerControl = L.control.layers(baseMaps, overlayMaps).addTo(map);
 
 // === FUNCIÓN DE ENLACE PARA LÍMITES MUNICIPALES ===
 function bindMunicipalLabel(feature, layer) {

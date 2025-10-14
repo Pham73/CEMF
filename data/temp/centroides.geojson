@@ -46,7 +46,7 @@
 { "type": "Feature", "properties": { "NOM_NUC": "Abasolo Y Anexos", "NOMGEO": "Rodeo", "NOM_ENT": "Durango" }, "geometry": { "type": "Point", "coordinates": [ -104.635355282242912, 25.30742557300151 ] } },
 { "type": "Feature", "properties": { "NOM_NUC": "Santo Niño de Arriba", "NOMGEO": "Francisco I. Madero", "NOM_ENT": "Coahuila de Zaragoza" }, "geometry": { "type": "Point", "coordinates": [ -103.238503666614847, 25.784187590499936 ] } },
 { "type": "Feature", "properties": { "NOM_NUC": "Santa Maria de Picachos", "NOMGEO": "Huajicori", "NOM_ENT": "Nayarit" }, "geometry": { "type": "Point", "coordinates": [ -105.081183357420258, 22.685250669478766 ] } },
-{ "type": "Feature", "properties": { "NOM_NUC": "Unidos Venceremos", "NOMGEO": "Durango", "NOM_ENT": "Durango" }, "geometry": { "type": "Point", "coordinates": [ -105.424323313058025, 23.992038143267617 ] } },
+{ "type": "Feature", "properties": { "NOM_NUC": "Unidos Venceremos", "NOMGEO": "Durango", "NOM_ENT": "Durango" }, "geometry": { "type": "Point", "coordinates": [ -105.424403933070323, 23.992053337989717 ] } },
 { "type": "Feature", "properties": { "NOM_NUC": "Santa Maria de Ocotan Y Xoconoxtle", "NOMGEO": "Mezquital", "NOM_ENT": "Durango" }, "geometry": { "type": "Point", "coordinates": [ -104.569282812338997, 22.793547566850556 ] } },
 { "type": "Feature", "properties": { "NOM_NUC": "Sianori", "NOMGEO": "Topia", "NOM_ENT": "Durango" }, "geometry": { "type": "Point", "coordinates": [ -106.756674531724883, 25.277984121766519 ] } },
 { "type": "Feature", "properties": { "NOM_NUC": "Jimenez Sector 1", "NOMGEO": "Gómez Palacio", "NOM_ENT": "Durango" }, "geometry": { "type": "Point", "coordinates": [ -103.363274739059619, 25.837500623183939 ] } },
